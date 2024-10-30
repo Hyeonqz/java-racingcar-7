@@ -34,4 +34,31 @@ class InputHandlerTest {
 		assertThat(strings).containsExactly("pobi", "woni", "juni");
 	}
 
+	@Test
+	@DisplayName("입력받은 자동차 이름이 5글자가 초과되면 예외가 발생한다")
+	void InputHandlerTest() {
+	    // given
+		String input = "pobi,woni,junisssss";
+		System.setIn(new ByteArrayInputStream(input.getBytes()));
+
+		// when
+
+	    // then
+		assertThatThrownBy( () -> inputHandler.consoleInput())
+			.hasMessage("5글자 초과의 자동차 이름이 부여되었습니다.")
+			;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

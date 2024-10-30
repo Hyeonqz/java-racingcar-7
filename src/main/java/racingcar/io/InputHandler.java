@@ -15,7 +15,9 @@ public class InputHandler {
 
 	public String secondConsoleInput () {
 		secondPrintInput();
-		return Console.readLine();
+		String moveNumberInput = Console.readLine();
+		isValidMoveNumber(moveNumberInput);
+		return moveNumberInput;
 	}
 
 	private void printInput () {
@@ -38,6 +40,22 @@ public class InputHandler {
 
 	private void secondPrintInput () {
 		System.out.println("시도할 횟수는 몇 회인가요?");
+	}
+
+	private void isValidMoveNumber (String moveNum) {
+		isValidMoveNumberLessThanTen(moveNum);
+		isMoveNumberNegative(moveNum);
+	}
+
+	private void isValidMoveNumberLessThanTen(String moveNum) {
+		if (Integer.parseInt(moveNum) >= 10)
+			throw new IllegalArgumentException("자동차 이동 횟수는 9이하만 가능합니다. 게임을 종료합니다.");
+	}
+
+
+	private void isMoveNumberNegative (String moveNum) {
+		if(Integer.parseInt(moveNum) < 0)
+			throw new IllegalArgumentException("음수는 입력할 수 없습니다. 게임을 종료합니다.");
 	}
 
 }
